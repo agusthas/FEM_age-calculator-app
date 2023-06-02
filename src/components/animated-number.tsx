@@ -6,8 +6,12 @@ interface AnimatedNumberProps {
 }
 
 export function AnimatedNumber({ start = 0, end }: AnimatedNumberProps) {
+  if (end === -1) {
+    return <span>--</span>;
+  }
+
   return (
-    <CountUp start={start} end={end}>
+    <CountUp start={start} end={end} preserveValue>
       {({ countUpRef }) => <span ref={countUpRef} />}
     </CountUp>
   );

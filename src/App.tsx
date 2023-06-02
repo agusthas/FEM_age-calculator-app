@@ -11,7 +11,7 @@ type DOBFormValues = z.infer<typeof dobFormSchema>;
 
 function App() {
   const id = useId();
-  const [age, setAge] = useSetState({ days: 0, months: 0, years: 0 });
+  const [age, setAge] = useSetState({ days: -1, months: -1, years: -1 });
 
   const {
     register,
@@ -20,6 +20,7 @@ function App() {
     handleSubmit,
   } = useForm<DOBFormValues>({
     resolver: zodResolver(dobFormSchema),
+    reValidateMode: "onSubmit",
   });
 
   const onSubmit = (data: DOBFormValues) => {
